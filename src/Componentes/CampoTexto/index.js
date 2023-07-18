@@ -2,15 +2,19 @@ import { useState } from 'react';
 import './CampoTexto.css'
 
 const CampoTexto = () => {
-
+    const [tarefas, setTarefas] = useState([])
     const [texto, setTexto] = useState('')
 
+    function adicionarTarefa() {
+        setTarefas([...tarefas, texto])
+        setTexto('')
+    }
 
     return (
         <section className='fundo'>
             <div className='texto'>
                 <input value={texto} onChange={(texto) => setTexto(texto.target.value)}  type='text'placeholder='Adicione uma tarefa' />
-                <button >
+                <button onClick={adicionarTarefa}>
                     <div className="svg-wrapper-1">
                         <div className="svg-wrapper">
                         <svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -23,7 +27,11 @@ const CampoTexto = () => {
                 </button>     
             </div>   
             <ul>
-                <li>{texto}</li>
+                {
+                    tarefas.map((tarefa, index) => (
+                        <li key={index} className='item'>{tarefa}</li>
+                    ))
+                }
             </ul> 
         </section>
         
