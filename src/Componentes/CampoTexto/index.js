@@ -1,16 +1,16 @@
+import { useState } from 'react';
 import './CampoTexto.css'
 
-const CampoTexto = (props) => {
+const CampoTexto = () => {
 
-    const aoDigitado = (evento) => {
-        props.aoAlterado(evento.target.value)
-    }
+    const [texto, setTexto] = useState('')
+
 
     return (
         <section className='fundo'>
             <div className='texto'>
-                <input value={props.valor} onChange={aoDigitado} placeholder='Adicione uma tarefa' />
-                <button>
+                <input value={texto} onChange={(texto) => setTexto(texto.target.value)}  type='text'placeholder='Adicione uma tarefa' />
+                <button >
                     <div className="svg-wrapper-1">
                         <div className="svg-wrapper">
                         <svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -20,9 +20,13 @@ const CampoTexto = (props) => {
                         </div>
                     </div>
                     <span>Criar</span>
-                </button>  
-            </div>       
+                </button>     
+            </div>   
+            <ul>
+                <li>{texto}</li>
+            </ul> 
         </section>
+        
     )
 }
 
